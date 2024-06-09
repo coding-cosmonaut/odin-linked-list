@@ -11,8 +11,8 @@ class LinkedListDataStructure {
     this.tail = null;
     this.length = 0;
   }
-  append(newItem) {
-    const newNode = new Node(newItem);
+  append(value) {
+    const newNode = new Node(value);
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
@@ -22,6 +22,18 @@ class LinkedListDataStructure {
     }
     this.length++;
     return this;
+  }
+  prepend(value) {
+    const newNode = new Node(value);
+    const currentHead = this.head;
+    if (currentHead) {
+      this.head = newNode;
+      this.head.nextNode = currentHead;
+    } else {
+      this.head = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
   }
   pop() {
     if (!this.head) return undefined;
@@ -44,12 +56,12 @@ class LinkedListDataStructure {
   }
 }
 const firstList = new LinkedListDataStructure();
-firstList.append("first NODE");
-firstList.append("second NODE");
-firstList.append("third NODE");
+// firstList.append("first NODE");
+// firstList.append("second NODE");
+// firstList.append("third NODE");
+// firstList.append("fourth NODE");
+console.log(firstList);
+firstList.prepend("Prepended new node");
 firstList.append("fourth NODE");
-// firstList.pop();
-// firstList.pop();
-// firstList.pop();
-// firstList.pop();
-console.log(firstList.pop());
+// firstList.prepend("Added another node");
+console.log(firstList);
