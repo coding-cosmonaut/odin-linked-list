@@ -54,14 +54,44 @@ class LinkedListDataStructure {
     this.length--;
     return current;
   }
+  size() {
+    return this.length;
+  }
+  firstNode() {
+    return this.head;
+  }
+  lastNode() {
+    return this.tail;
+  }
+  contains(value) {
+    let current = this.head;
+    while (current) {
+      if (value === current.data) {
+        return true;
+      }
+      current = current.nextNode;
+    }
+    return false;
+  }
+  toString() {
+    if (!this.head) return null;
+    let listString = "";
+    let current = this.head;
+    while (current) {
+      listString += `(${current.data}) -> `;
+      current = current.nextNode;
+    }
+    listString += "null";
+    return listString;
+  }
 }
 const firstList = new LinkedListDataStructure();
-// firstList.append("first NODE");
-// firstList.append("second NODE");
-// firstList.append("third NODE");
-// firstList.append("fourth NODE");
-console.log(firstList);
-firstList.prepend("Prepended new node");
+firstList.append("first NODE");
+firstList.append("second NODE");
+firstList.append("third NODE");
 firstList.append("fourth NODE");
+// console.log(firstList);
+// firstList.prepend("Prepended new node");
+// firstList.append("fourth NODE");
 // firstList.prepend("Added another node");
-console.log(firstList);
+console.log(firstList.toString());
