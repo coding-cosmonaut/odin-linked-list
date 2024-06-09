@@ -84,6 +84,30 @@ class LinkedListDataStructure {
     listString += "null";
     return listString;
   }
+  at(index) {
+    let current = this.head;
+    let i = 0;
+    while (i < this.length) {
+      if (i === index) {
+        return current;
+      }
+      current = current.nextNode;
+      i++;
+    }
+    return null;
+  }
+  find(value) {
+    let current = this.head;
+    let i = 0;
+    while (i < this.length) {
+      if (current.data === value) {
+        return i;
+      }
+      current = current.nextNode;
+      i++;
+    }
+    return null;
+  }
 }
 const firstList = new LinkedListDataStructure();
 firstList.append("first NODE");
@@ -94,4 +118,5 @@ firstList.append("fourth NODE");
 // firstList.prepend("Prepended new node");
 // firstList.append("fourth NODE");
 // firstList.prepend("Added another node");
-console.log(firstList.toString());
+// console.log(firstList)
+console.log(firstList.find("asdf NODE"));
