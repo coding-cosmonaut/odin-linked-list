@@ -140,10 +140,39 @@ class LinkedListDataStructure {
     }
     return true;
   }
+  removeAt(index) {
+    let previous;
+    let current = this.head;
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) {
+      this.head = current.nextNode;
+      this.length--;
+      return true;
+    }
+
+    let i = 0;
+    while (current) {
+      if (i === index) {
+        previous.nextNode = current.nextNode;
+        this.length--;
+        return true;
+      }
+      if (index === this.length && i === this.length - 1) {
+        this.tail = previous;
+        this.tail.nextNode = null;
+        this.length--;
+        return true;
+      }
+      previous = current;
+      current = current.nextNode;
+      i++;
+    }
+    return true;
+  }
 }
 const firstList = new LinkedListDataStructure();
 firstList.append("first NODE");
 firstList.append("second NODE");
 firstList.append("third NODE");
 firstList.append("fourth NODE");
-console.log(firstList.insertAt("INSERTED VALUE", 3));
+console.log(firstList.removeAt(4));
