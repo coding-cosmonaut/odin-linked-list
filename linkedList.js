@@ -108,15 +108,42 @@ class LinkedListDataStructure {
     }
     return null;
   }
+  insertAt(value, index) {
+    const newNode = new Node(value);
+    let previous = this.head;
+    let current = this.head;
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) {
+      this.head = newNode;
+      newNode.nextNode = current;
+      this.length++;
+      return true;
+    }
+
+    let i = 0;
+    while (current) {
+      if (i === index) {
+        previous.nextNode = newNode;
+        newNode.nextNode = current;
+        this.length++;
+        return true;
+      }
+      previous = current;
+      current = current.nextNode;
+      i++;
+    }
+    if (index === this.length) {
+      this.tail = newNode;
+      previous.nextNode = this.tail;
+      this.length++;
+      return true;
+    }
+    return true;
+  }
 }
 const firstList = new LinkedListDataStructure();
 firstList.append("first NODE");
 firstList.append("second NODE");
 firstList.append("third NODE");
 firstList.append("fourth NODE");
-// console.log(firstList);
-// firstList.prepend("Prepended new node");
-// firstList.append("fourth NODE");
-// firstList.prepend("Added another node");
-// console.log(firstList)
-console.log(firstList.find("asdf NODE"));
+console.log(firstList.insertAt("INSERTED VALUE", 3));
